@@ -125,5 +125,13 @@ git@github.com:Neo017/trainingportal.git
 
 ## Status
 
-Under active development.
+## Implemented
 
+The current Sprint 1 implementation includes the Moodle plugin bootstrap,
+offering and application tables, capabilities, public registration, payment
+proof storage, coordinator payment review, approval/rejection orchestration,
+Moodle user linking/creation, manual course enrolment, event logging,
+certificate PDF storage, privacy metadata, and basic PHPUnit coverage.
+
+Install the plugin in a Moodle 5.2 site, configure a manual enrolment method on
+the target course, and assign the Training Portal capabilities to coordinators.

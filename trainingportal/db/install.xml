@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/trainingportal/db" VERSION="2026091000" COMMENT="XMLDB file for local_trainingportal"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+    <TABLES>
+        <TABLE NAME="tp_offering" COMMENT="Training programme delivery offerings">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" />
+                <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="code" TYPE="char" LENGTH="100" NOTNULL="true" />
+                <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" />
+                <FIELD NAME="registrationstart" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="registrationend" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="trainingstart" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="trainingend" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="fee" TYPE="number" LENGTH="12" DECIMALS="2" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="capacity" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="active" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" />
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+            </FIELDS>
+            <KEYS><KEY NAME="primary" TYPE="primary" FIELDS="id" /></KEYS>
+            <INDEXES>
+                <INDEX NAME="code_uix" UNIQUE="true" FIELDS="code" />
+                <INDEX NAME="courseid_ix" UNIQUE="false" FIELDS="courseid" />
+                <INDEX NAME="active_ix" UNIQUE="false" FIELDS="active" />
+            </INDEXES>
+        </TABLE>
+        <TABLE NAME="tp_application" COMMENT="Training applications">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" />
+                <FIELD NAME="offeringid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="applicationcode" TYPE="char" LENGTH="40" NOTNULL="true" />
+                <FIELD NAME="firstname" TYPE="char" LENGTH="100" NOTNULL="true" />
+                <FIELD NAME="lastname" TYPE="char" LENGTH="100" NOTNULL="true" />
+                <FIELD NAME="email" TYPE="char" LENGTH="254" NOTNULL="true" />
+                <FIELD NAME="phone" TYPE="char" LENGTH="50" NOTNULL="true" />
+                <FIELD NAME="organisation" TYPE="char" LENGTH="255" NOTNULL="false" />
+                <FIELD NAME="designation" TYPE="char" LENGTH="255" NOTNULL="false" />
+                <FIELD NAME="paymentreference" TYPE="char" LENGTH="150" NOTNULL="true" />
+                <FIELD NAME="paymentstatus" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="UPLOADED" />
+                <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="PENDING" />
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="false" />
+                <FIELD NAME="approvedby" TYPE="int" LENGTH="10" NOTNULL="false" />
+                <FIELD NAME="approvedat" TYPE="int" LENGTH="10" NOTNULL="false" />
+                <FIELD NAME="rejectedby" TYPE="int" LENGTH="10" NOTNULL="false" />
+                <FIELD NAME="rejectedat" TYPE="int" LENGTH="10" NOTNULL="false" />
+                <FIELD NAME="rejectionreason" TYPE="text" NOTNULL="false" />
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+            </FIELDS>
+            <KEYS><KEY NAME="primary" TYPE="primary" FIELDS="id" /></KEYS>
+            <INDEXES>
+                <INDEX NAME="applicationcode_uix" UNIQUE="true" FIELDS="applicationcode" />
+                <INDEX NAME="offeringid_ix" UNIQUE="false" FIELDS="offeringid" />
+                <INDEX NAME="email_ix" UNIQUE="false" FIELDS="email" />
+                <INDEX NAME="status_ix" UNIQUE="false" FIELDS="status" />
+                <INDEX NAME="paymentstatus_ix" UNIQUE="false" FIELDS="paymentstatus" />
+                <INDEX NAME="userid_ix" UNIQUE="false" FIELDS="userid" />
+            </INDEXES>
+        </TABLE>
+        <TABLE NAME="tp_certificate" COMMENT="Issued training certificates">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" />
+                <FIELD NAME="applicationid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="offeringid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="certificatenumber" TYPE="char" LENGTH="100" NOTNULL="true" />
+                <FIELD NAME="issuedby" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="timeissued" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="ISSUED" />
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+                <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" />
+            </FIELDS>
+            <KEYS><KEY NAME="primary" TYPE="primary" FIELDS="id" /></KEYS>
+            <INDEXES>
+                <INDEX NAME="applicationid_uix" UNIQUE="true" FIELDS="applicationid" />
+                <INDEX NAME="certificatenumber_uix" UNIQUE="true" FIELDS="certificatenumber" />
+                <INDEX NAME="userid_ix" UNIQUE="false" FIELDS="userid" />
+            </INDEXES>
+        </TABLE>
+    </TABLES>
+</XMLDB>
